@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thông Báo Cookie</title>
+<style>
+.cookie-banner {
+  display: none; 
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.85);
+  color: white;
+  text-align: center;
+  padding: 10px;
+  z-index: 1000;
+}
+.cookie-banner button {
+  margin-top: 10px;
+  padding: 5px 20px;
+  background-color: #f8e71c;
+  border: none;
+  cursor: pointer;
+}
+</style>
+</head>
+<body>
+
+<div class="cookie-banner" id="cookieBanner">
+  <p>Chúng tôi sử dụng cookies để cung cấp trải nghiệm tốt nhất. Bằng cách tiếp tục sử dụng trang web này, bạn đồng ý với việc sử dụng cookies của chúng tôi.</p>
+  <button id="acceptCookiesButton">Đồng Ý</button>
+</div>
+
+<script>
+function checkCookieConsent() {
+  if (sessionStorage.getItem('cookieConsent') === 'true') {
+    document.getElementById('cookieBanner').style.display = 'none';
+  } else {
+    document.getElementById('cookieBanner').style.display = 'block';
+  }
+}
+
+function acceptCookies() {
+  sessionStorage.setItem('cookieConsent', 'true');
+  document.getElementById('cookieBanner').style.display = 'none';
+}
+
+document.addEventListener('DOMContentLoaded', (event) => {
+  document.getElementById('acceptCookiesButton').addEventListener('click', acceptCookies);
+});
+
+window.onload = checkCookieConsent;
+</script>
+
+</body>
+</html>
